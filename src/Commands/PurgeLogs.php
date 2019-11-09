@@ -5,6 +5,7 @@ namespace Butcherman\ArtisanDevCommands\Commands;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 
 class PurgeLogs extends Command
 {
@@ -22,7 +23,10 @@ class PurgeLogs extends Command
      */
     protected $description = 'This command will delete all log files in the logs storage location';
 
+    //  Supported log channels
     protected $supported = ['daily', 'single'];
+    //  Extension name of the log files (to be sure only logs are deleted)
+    protected $logExt = '.log';
 
     /**
      * Create a new command instance.
@@ -60,14 +64,10 @@ class PurgeLogs extends Command
 
     private function wipeLogs($path)
     {
-        $logExt = '.log';
+        $fileParts = pathinfo($path);
+        $fullPath = $fileParts['dirname'].DIRECTORY_SEPARATOR;
+        array_map('unlink', glob($fullPath.'*'.$this->logExt));
 
-        $this->line('Still working on this part');
-
-
-
-
-
-
+        $this->line('All log files removed');
     }
 }

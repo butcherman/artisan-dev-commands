@@ -25,6 +25,12 @@ Clear the contents of the current log file while keeping the file itself in tact
 php artisan log:clean
 ```
 
+Delete all log files in the Log directory (will only remove files with the .log extension)
+
+```php
+php artisan log:purge
+```
+
 ## More to Come
 
 ## Copyright © 2019 Butcherman

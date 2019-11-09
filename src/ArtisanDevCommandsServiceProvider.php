@@ -26,7 +26,7 @@ class ArtisanDevCommandsServiceProvider extends ServiceProvider
         //
         $this->commands([
             Commands\CleanLogs::class,
-            // Commands\PurgeLogs::class,
+            Commands\PurgeLogs::class,
         ]);
     }
 }
