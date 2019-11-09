@@ -2,6 +2,13 @@
 
 A simple collection of Artisan commands to help make your development troubleshooting a little easier.
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/butcherman/artisan-dev-commands/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/butcherman/artisan-dev-commands/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/butcherman/artisan-dev-commands/badges/build.png?b=master)](https://scrutinizer-ci.com/g/butcherman/artisan-dev-commands/build-status/master)
+[![Build Status](https://travis-ci.com/butcherman/artisan-dev-commands.svg?branch=master)](https://travis-ci.com/butcherman/artisan-dev-commands)
+[![GitHub release](https://img.shields.io/github/release/Butcherman/artisan-dev-commands)](https://GitHub.com/Butcherman/artisan-dev-commands/releases/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Latest Stable Version](https://poser.pugx.org/butcherman/artisan-dev-commands/v/stable)](https://packagist.org/packages/butcherman/artisan-dev-commands)
+
 ## Requirements
 
 - PHP 7.2 or Higher
@@ -10,7 +17,7 @@ A simple collection of Artisan commands to help make your development troublesho
 ## Installation
 
 ```php
-composer require butcherman\artisan-dev-commands --dev
+composer require butcherman/artisan-dev-commands --dev
 ```
 
 ## Usage

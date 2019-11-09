@@ -19,7 +19,7 @@ class CleanLogs extends Command
      *
      * @var string
      */
-    protected $description = 'This command will empty the current active log';
+    protected $description = 'Empty the current active log file';
 
     /**
      * Create a new command instance.
