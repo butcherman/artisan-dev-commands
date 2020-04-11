@@ -2,10 +2,7 @@
 
 namespace Butcherman\ArtisanDevCommands\Commands;
 
-use Carbon\Carbon;
-use Illuminate\Support\Arr;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 
 class PurgeLogs extends Command
 {
@@ -21,7 +18,7 @@ class PurgeLogs extends Command
      *
      * @var string
      */
-    protected $description = 'This command will delete all log files in the logs storage location';
+    protected $description = 'Delete all log files in the logs storage location';
 
     //  Supported log channels
     protected $supported = ['daily', 'single'];
