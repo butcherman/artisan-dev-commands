@@ -38,9 +38,13 @@ Delete all log files in the Log directory (will only remove files with the .log 
 php artisan log:purge
 ```
 
-## More to Come
+Create a new dedicated class called a Domain in a separate folder under App\Domains that can be reused throughout the application
 
-## Copyright © 2019 Butcherman
+```php
+php artisan make:domain DomainName   #  Note - to put a domain in a sub folder, enter the folder name followed by domain name - i.e. folder\name
+```
+
+## Copyright © 2019-2020 Butcherman
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,

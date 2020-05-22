@@ -4,7 +4,7 @@ namespace Butcherman\ArtisanDevCommands\Commands;
 
 use Illuminate\Console\Command;
 
-class PurgeLogs extends Command
+class PurgeAllLogs extends Command
 {
     /**
      * The name and signature of the console command.
