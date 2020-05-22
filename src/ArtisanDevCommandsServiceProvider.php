@@ -23,11 +23,11 @@ class ArtisanDevCommandsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
         $this->commands([
             Commands\CleanLogs::class,
-            Commands\PurgeLogs::class,
-//            Commands\MakeAction::class,
+            Commands\PurgeAllLogs::class,
+            Commands\MakeDomain::class,
+
         ]);
     }
 }
