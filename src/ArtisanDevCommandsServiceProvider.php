@@ -28,6 +28,7 @@ class ArtisanDevCommandsServiceProvider extends ServiceProvider
             Commands\PurgeAllLogs::class,
             Commands\MakeDomain::class,
             Commands\MakeAction::class,
+            Commands\MakePage::class,
         ]);
     }
 }

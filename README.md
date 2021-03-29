@@ -51,6 +51,12 @@ Action Classes are typically used to perform a single job, but one that is neede
 php artisan make:action ActionName   #  Note - to put the action in a sub folder, enter the folder name followed by the action name
 ```
 
+Create a new Vue page located at /resources/js/Pages with a basic Vue template.  Adding a new Vue page in a sub folder uses the dot (.) syntax similar to the View syntax
+
+```php
+php artisan make:page Folder.pageName
+```
+
 ## Copyright © 2019-2021 Butcherman
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
