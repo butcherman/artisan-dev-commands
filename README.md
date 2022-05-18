@@ -41,13 +41,6 @@ php artisan log:purge
 Create a new dedicated class called a Domain in a separate folder under App\Domains that can be reused throughout the application
 
 ```php
-php artisan make:domain DomainName   #  Note - to put a domain in a sub folder, enter the folder name followed by domain name - i.e. folder\name
-```
-
-Create a new dedicated class called an Action in a separate folder under App\Actions that can be reused throughout the application
-Action Classes are typically used to perform a single job, but one that is needed throughout the application
-
-```php
 php artisan make:action ActionName   #  Note - to put the action in a sub folder, enter the folder name followed by the action name
 ```
 

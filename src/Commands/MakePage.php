@@ -9,7 +9,7 @@ use Symfony\Component\Console\Exception\InvalidArgumentException;
 
 class MakePage extends Command
 {
-    protected $name        = 'make:page';
+    protected $name         = 'make:page';
     protected  $description = 'Create a new Vue Page in the resources/js/Pages folder';
 
 
