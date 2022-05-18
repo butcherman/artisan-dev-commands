@@ -17,7 +17,7 @@
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "phpunit/phpunit": "^8.0",
-        "orchestra/testbench": "^4.3"
+        "orchestra/testbench": "^4.3|^5.0|^6.0|^7.0"
     },
     "license": "MIT",
     "authors": [
