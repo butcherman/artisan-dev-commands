@@ -28,6 +28,7 @@ class ArtisanDevCommandsServiceProvider extends ServiceProvider
             Commands\PurgeAllLogs::class,
             Commands\MakePage::class,
             Commands\MakeTrait::class,
+            Commands\MakeVueComponent::class,
         ]);
     }
 }
