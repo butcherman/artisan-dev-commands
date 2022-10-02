@@ -3,15 +3,13 @@
 namespace Butcherman\ArtisanDevCommands\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Console\GeneratorCommand;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Exception\InvalidArgumentException;
 
 class MakePage extends Command
 {
-    protected $name         = 'make:page';
-    protected  $description = 'Create a new Vue Page in the resources/js/Pages folder';
-
+    protected $signature   = 'make:page
+                            {name : Name of the page to be created}
+                            {--optionsApi : If added, the Vue Options API will be suggested rather than the Composistion API}';
+    protected $description = 'Create a new Vue Page in the resources/js/Pages folder';
 
     //  Create the new Page
     public function handle()
@@ -22,6 +20,13 @@ class MakePage extends Command
         $path     = $basePath.DIRECTORY_SEPARATOR.implode(DIRECTORY_SEPARATOR, $nameArr).'.vue';
         $pathInfo = pathinfo($path);
 
+        //  Determine if the /resources/Pages directory exists - if not, create it
+        if(!is_dir($basePath))
+        {
+            mkdir($basePath);
+        }
+
+        //  If the page already exists, we will trigger an error
         if(file_exists($path))
         {
             $this->error('This page already exists');
@@ -33,7 +38,6 @@ class MakePage extends Command
             mkdir($pathInfo['dirname']);
         }
 
-        // file_put_contents($path, $this->getStub());
         copy($this->getStub(), $path);
         $this->info('New page created successfully');
     }
@@ -41,14 +45,12 @@ class MakePage extends Command
     //  Get the stub file for the generator.
     protected function getStub()
     {
-        return  base_path('vendor/butcherman/artisan-dev-commands/src/Stubs/PageStub.stub');
-    }
+        if($this->option('optionsApi'))
+        {
+            $this->line('options api');
+            return  base_path('vendor/butcherman/artisan-dev-commands/src/Stubs/PageStub-Options.stub');
+        }
 
-    //  Get the console command arguments
-    protected function getArguments()
-    {
-        return [
-            ['name', InputArgument::REQUIRED, 'The name of the page to create'],
-        ];
+        return base_path('vendor/butcherman/artisan-dev-commands/src/Stubs/PageStub-Setup.stub');
     }
 }
