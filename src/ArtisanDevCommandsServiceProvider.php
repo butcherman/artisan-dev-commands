@@ -26,8 +26,9 @@ class ArtisanDevCommandsServiceProvider extends ServiceProvider
         $this->commands([
             Commands\CleanLogs::class,
             Commands\PurgeAllLogs::class,
-            Commands\MakeAction::class,
             Commands\MakePage::class,
+            Commands\MakeTrait::class,
+            Commands\MakeVueComponent::class,
         ]);
     }
 }
