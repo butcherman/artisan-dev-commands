@@ -7,77 +7,73 @@ use Illuminate\Console\Command;
 
 class CleanLogs extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'log:clean';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
+    protected $signature   = 'log:clean';
     protected $description = 'Empty the current active log file';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
     public function handle()
     {
         $channel = config('logging.default');
 
-        //  Determine if the daily or single log channel is being used
-        switch($channel) {
-            case 'daily':
-                $this->dailyLog();
-                break;
-            case 'single':
-                $this->singleLog();
-                break;
-            default:
-                $this->line('Sorry, but this command only support Single and Daily log channels.');
+        //  If the default channel is set to 'stack' then we must clear all in the stack
+        if($channel === 'stack')
+        {
+            $stackArr = config('logging.channels.stack.channels');
+            foreach($stackArr as $chan)
+            {
+                $path = $this->getChanelPath($chan);
+                $file = $this->getLogFile($path);
+                $this->cleanLogFile($file);
+            }
+        }
+        else
+        {
+            $path    = $this->getChanelPath($channel);
+            $file    = $this->getLogFile($path);
+
+            if($file)
+            {
+                $this->cleanLogFile($file);
+            }
+        }
+
+        return 0;
+    }
+
+    private function getChanelPath($channel)
+    {
+        return config('logging.channels.'.$channel.'.path');
+    }
+
+    private function getLogFile($path)
+    {
+        if(file_exists($path))
+        {
+            return $path;
+        }
+        else
+        {
+            $fileParts = pathinfo($path);
+            $timeStamp = Carbon::now()->format('Y-m-d');
+            $logFile   = $fileParts['dirname'].DIRECTORY_SEPARATOR.$fileParts['filename'].'-'.$timeStamp.'.'.$fileParts['extension'];
+
+            if(file_exists($logFile))
+            {
+                return $logFile;
+            }
+
+            return $this->returnError($logFile);
         }
     }
 
-    //  Empty the current Daily log file
-    private function dailyLog()
+    private function returnError($logFile)
     {
-        $logFile = $this->getDailyPath();
+        $this->error('Well, this is embarrassing...');
+        $this->error('It seems I cannot find your log file');
+        $this->newLine();
+        $this->error('I was looking for '.$logFile);
+        $this->error('It either has not been created yet, or there was a problem with my algorithm');
 
-        $this->cleanLogFile($logFile);
-    }
-
-    private function getDailyPath()
-    {
-        //  Break up the log file name and path to get the name of the current active log file
-        $logPath = config('logging.channels.daily.path');
-        $fileParts = pathinfo($logPath);
-        $timeStamp = Carbon::now()->format('Y-m-d');
-        $logFile = $fileParts['dirname'].DIRECTORY_SEPARATOR.$fileParts['filename'].'-'.$timeStamp.'.'.$fileParts['extension'];
-
-        return $logFile;
-    }
-
-    //  Empty the current single log file
-    private function singleLog()
-    {
-        $logFile = config('logging.channels.single.path');
-
-        $this->cleanLogFile($logFile);
+        return false;
     }
 
     private function cleanLogFile($logFile)
@@ -85,13 +81,9 @@ class CleanLogs extends Command
         //  Verify the file exists before trying to clear it
         if(file_exists($logFile)) {
             file_put_contents($logFile, '');
-            $this->line('Log File Emptied');
+            $this->info('Log File Emptied');
         } else {
-            $this->line('Well, this is embarrassing...');
-            $this->line('It seems I cannot find your log file');
-            $this->line('');
-            $this->line('I was looking for '.$logFile);
-            $this->line('It either has not been created yet, or there was a problem with my algorithm');
+            $this->returnError($logFile);
         }
 
         $this->line('');

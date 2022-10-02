@@ -40,6 +40,8 @@ class MakePage extends Command
 
         copy($this->getStub(), $path);
         $this->info('New page created successfully');
+
+        return 0;
     }
 
     //  Get the stub file for the generator.
