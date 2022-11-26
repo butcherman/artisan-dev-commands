@@ -47,12 +47,13 @@ class MakePage extends Command
     //  Get the stub file for the generator.
     protected function getStub()
     {
-        if($this->option('optionsApi'))
+        $stubName = $this->option('optionsApi') ? 'PageStub-Options.stub' : 'PageStub-Setup.stub';
+
+        if(file_exists(base_path('stubs/dev_commands/'.$stubName)))
         {
-            $this->line('options api');
-            return  base_path('vendor/butcherman/artisan-dev-commands/src/Stubs/PageStub-Options.stub');
+            return base_path('stubs/dev_commands/'.$stubName);
         }
 
-        return base_path('vendor/butcherman/artisan-dev-commands/src/Stubs/PageStub-Setup.stub');
+        return base_path('vendor/butcherman/artisan-dev-commands/src/Stubs/'.$stubName);
     }
 }
