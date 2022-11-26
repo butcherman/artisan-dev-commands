@@ -47,12 +47,13 @@ class MakeVueComponent extends Command
     //  Get the stub file for the generator.
     protected function getStub()
     {
-        if($this->option('optionsApi'))
+        $stubName = $this->option('optionsApi') ? 'ComponentStub-Options.stub' : 'ComponentStub-Setup.stub';
+
+        if(file_exists(base_path('stubs/dev_commands/'.$stubName)))
         {
-            $this->line('options api');
-            return  base_path('vendor/butcherman/artisan-dev-commands/src/Stubs/ComponentStub-Options.stub');
+            return base_path('stubs/dev_commands/'.$stubName);
         }
 
-        return base_path('vendor/butcherman/artisan-dev-commands/src/Stubs/ComponentStub-Setup.stub');
+        return base_path('vendor/butcherman/artisan-dev-commands/src/Stubs/'.$stubName);
     }
 }

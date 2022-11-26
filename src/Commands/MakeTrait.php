@@ -56,6 +56,11 @@ class MakeTrait extends Command
     //  Get the stub file for the generator.
     protected function getStub()
     {
+        if(file_exists(base_path('stubs/dev_commands/TraitStub.stub')))
+        {
+            return base_path('stubs/dev_commands/TraitStub.stub');
+        }
+
         return  base_path('vendor/butcherman/artisan-dev-commands/src/Stubs/TraitStub.stub');
     }
 
