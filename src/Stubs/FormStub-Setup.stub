@@ -1,0 +1,22 @@
+<template>
+    <form
+        :action="submitRoute"
+        :method="submitMethod"
+    >
+        <input
+            type="text"
+            id="description"
+            name="description"
+            label="File Type Description"
+            focus
+        />
+        <button type="submit">Submit</button>
+    </form>
+</template>
+
+<script setup lang="ts">
+import { computed } from "vue";
+
+const submitRoute = computed(() => '#');
+const submitMethod = computed(() => "post");
+</script>
