@@ -1,6 +1,7 @@
 # Butcherman\Artisan-Dev-Commands
 
-A simple collection of Artisan commands to help make your development troubleshooting a little easier.
+A simple collection of Artisan commands to help make your development and
+troubleshooting a little easier.
 
 [![GitHub release](https://img.shields.io/github/release/Butcherman/artisan-dev-commands)](https://GitHub.com/Butcherman/artisan-dev-commands/releases/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -27,7 +28,8 @@ Clear the contents of the current log file while keeping the file itself in tact
 php artisan log:clean
 ```
 
-Delete all log files in the Log directory (will only remove files with the .log extension)
+Delete all log files in the Log directory (will only remove files with the .log
+extension)
 
 ```php
 php artisan log:purge
@@ -36,22 +38,34 @@ php artisan log:purge
 Create a new Laravel Trait in the app/Traits folder
 
 ```php
-php artisan make:trait TraitName    //  or  Folder/TraitName
+php artisan make:trait TraitName  // or Folder/TraitName
 ```
 
-Create a new Vue page located at /resources/js/Pages with a basic Vue template.  Adding a new Vue page in a sub folder uses the dot (.) syntax similar to the View syntax
+Create a new Vue page located at /resources/js/Pages with a basic Vue template.
+Adding a new Vue page in a sub folder uses the dot (.) syntax similar to the
+View syntax
 
 ```php
-php artisan make:page Folder.pageName   //  To add the component using the Vue's Options API, add the --optionsApi flag
+php artisan make:page folder.pageName  // To add the component using the Vue's Options API, add the --optionsApi flag
 ```
 
-Create a new Vue component located at /resources/js/Components with a basic Vue template.  Adding a new Vue component in a sub folder uses the dot (.) syntax similar to the View syntax
+Create a new Vue component located at /resources/js/Components with a basic Vue
+template.  Adding a new Vue component in a sub folder uses the dot (.) syntax
+similar to the View syntax
 
 ```php
-php artisan make:vuecomponent Folder.componentName      //  To add the component using the Vue's Options API, add the --optionsApi flag
+php artisan make:vuecomponent folder.componentName  // To add the component using the Vue's Options API, add the --optionsApi flag
 ```
 
-## Copyright © 2019-2022 Butcherman
+Create a new Vue form component located at /resources/js/Forms with a basic form
+template.  Adding a new Vue component in a sub folder uses the dot (.) syntax
+similar to the View syntax
+
+```php
+php artisan make:form folder.formName  // To add the form using the Vue's Options API, add the --optionsApi flag
+```
+
+## Copyright © 2019-2025 Butcherman
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,

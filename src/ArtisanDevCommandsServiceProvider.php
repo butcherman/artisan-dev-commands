@@ -29,10 +29,11 @@ class ArtisanDevCommandsServiceProvider extends ServiceProvider
             Commands\MakePage::class,
             Commands\MakeTrait::class,
             Commands\MakeVueComponent::class,
+            Commands\MakeForm::class,
         ]);
 
         $this->publishes([
-            __DIR__.'/Stubs/' => base_path('stubs/dev_commands')
+            __DIR__ . '/Stubs/' => base_path('stubs/dev_commands')
         ], 'stubs');
     }
 }

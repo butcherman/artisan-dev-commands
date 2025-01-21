@@ -1,7 +1,17 @@
 <template>
-    <div>
-        <strong>New Component</strong>
-    </div>
+    <form
+        :action="submitRoute"
+        :method="submitMethod"
+    >
+        <input
+            type="text"
+            id="description"
+            name="description"
+            label="File Type Description"
+            focus
+        />
+        <button type="submit">Submit</button>
+    </form>
 </template>
 
 <script>
@@ -21,7 +31,8 @@
              //
         },
         computed: {
-             //
+             submitRoute: '#',
+             submitMethod: 'post',
         },
         watch: {
              //
