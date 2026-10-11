@@ -11,7 +11,8 @@ class MakePage extends Command
      */
     protected $signature   = 'make:page
                             {name : Name of the page to be created}
-                            {--optionsApi : If added, the Vue Options API will be suggested rather than the Composition API}';
+                            {--optionsApi : If added, the Vue Options API will be suggested rather than the Composition API}
+                            {--layout= : Assign the name of the Layout Template for this page}';
 
     /**
      * @var string
@@ -26,7 +27,7 @@ class MakePage extends Command
     {
         //  Get the name and path the Page will be placed
         $nameArr  = explode('.', $this->argument('name'));
-        $basePath = resource_path('js') . DIRECTORY_SEPARATOR . 'Pages';
+        $basePath = resource_path('js') . DIRECTORY_SEPARATOR . 'pages';
         $path     = $basePath . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $nameArr) . '.vue';
         $pathInfo = pathinfo($path);
 
@@ -45,7 +46,24 @@ class MakePage extends Command
             mkdir($pathInfo['dirname'], 0775, true);
         }
 
-        copy($this->getStub(), $path);
+        $stub = file_get_contents($this->getStub());
+
+        if ($template = $this->option('layout')) {
+            $stub = str_replace(
+                '<script setup lang="ts">',
+                "<script setup lang=\"ts\">\nimport $template from '@/layouts/$template.vue'",
+                $stub
+            );
+
+            $stub = str_replace(
+                'const props = defineProps<{}>();',
+                "defineOptions({ template: '{$template}' });\n\nconst props = defineProps<{}>();",
+                $stub
+            );
+        }
+
+        file_put_contents($path, $stub);
+
         $this->info('New page created successfully');
 
         return 0;
