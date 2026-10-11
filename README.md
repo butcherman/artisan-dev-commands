@@ -46,7 +46,7 @@ Adding a new Vue page in a sub folder uses the dot (.) syntax similar to the
 View syntax
 
 ```php
-php artisan make:page folder.pageName  // To add the component using the Vue's Options API, add the --optionsApi flag
+php artisan make:page folder.pageName --layout=LayoutName  // To add the component using the Vue's Options API, add the --optionsApi flag - Layout flag is optional
 ```
 
 Create a new Vue component located at /resources/js/Components with a basic Vue
